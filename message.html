@@ -146,7 +146,22 @@
           let messageText = newMessageInput.value;
           let newMessage = newMessageTemplate.cloneNode(true);
           $(".chat-message-name").text(userName);
-          newMessage.querySelector('.chat-message-text').textContent = messageText;
+
+          var newmessagetext = "";
+          
+          if(messageText.length > 50){
+            for(var i=0;i<messageText.length;i=i+50){
+              if(messageText.length<i+50){
+                newmessagetext = newmessagetext+messageText.substring(i,messageText.length)+"<br>";
+              }
+              else{
+                newmessagetext = newmessagetext+messageText.substring(i,i+50)+"<br>";
+              }
+              
+            }
+          }
+
+          newMessage.querySelector('.chat-message-text').textContent = newmessagetext;
 
           deleteMessageHandler(newMessage);
 
